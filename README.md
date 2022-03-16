@@ -1,4 +1,4 @@
-English version
+#English version
 <h2>Z8 Grup Araştırması</h2>
 Bu proje Z8 döngüsel grubunun toplama işlemine göre elemanlarının belirlenmesi ve ultra grup homomorfizması kurallarına uyup uymadığının değerlendirilmesi işlemlerini gerçekleştiren kod parçacıklarını içerir.
 <h3>Kod içerikleri</h3>
