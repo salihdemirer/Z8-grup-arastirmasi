@@ -42,5 +42,3 @@ def alt_ultra(kume):
         return 0
 
     
-    
-print(alt_ultra([1,2,3,4]))

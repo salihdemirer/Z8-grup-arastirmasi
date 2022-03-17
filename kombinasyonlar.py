@@ -30,6 +30,8 @@ def tum_kombinasyonlar(kume):
             liste_ = []  
     return ters_kombinasyonlar
 kombinasyon = tum_kombinasyonlar([1,2,3,4])
+print("Programın deneyeceği kombinasyonlar:")
 for i in kombinasyon:
     print(i)
+print("Programın deneyeceği kombinasyon sayısı:")
 print(len(kombinasyon))
