@@ -1,3 +1,4 @@
+[Türkçe](https://github.com/salihdemirer/Z8-grup-arastirmasi/blob/main/README.md)
 <h2>Z8 Group Research</h2>
 This project includes code snippets that perform the operations of determining the elements of the Z8 cyclic group according to the addition operation and evaluating whether it conforms to the ultra-group homomorphism rules.
 <h3>Code contents</h3>
