@@ -1,6 +1,5 @@
 #Oluşturduğum M kümeleri
 from islemler import islem
-
 M = [[0,1,2,3],[0,1,2,7],[0,1,6,3],[0,1,6,7],[0,5,2,3],[0,5,2,7],[0,5,6,3],[0,5,6,7]]
 # M kümeleri arasında karşılaştırma yapmak için kombinasyonlara ihtiyacım var.
 kombinasyonlar = list()
