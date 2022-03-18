@@ -41,6 +41,8 @@ def islem(kume1,kume2):
     #İlk kümeden seçilecek x ve y elemanlarının bir listesi ikili_kombinasyonlar oldu.
     fonksiyon = incele(kume1,kume2)
     ikili_kombinasyonlar_ = ikili_kombinasyonlar(kume1)
+    for i in ikili_kombinasyonlar_:
+        print(i)
     sayac = 0
     for i in ikili_kombinasyonlar_:
         #Toplamda 6 kombinasyon var. Eğer bu 6 kombinasyonun eşitliği sağlanırsa Ultra Grup Homomorfizması şartlarını sağlayacağından sınıflandırmada sayaç kullanıyorum.
@@ -71,7 +73,10 @@ def islem(kume1,kume2):
         ugh_saglamaz.append(sonuc)
         sayac = 0
     print("--------------------------------------------------------------------------------")
+    
 #for saglar in ugh_saglar:
     #print(saglar)
 #for saglamaz in ugh_saglamaz:
     #print(saglamaz)
+#Örnek
+#islem([1,2,5,6],[1,2,3,4])

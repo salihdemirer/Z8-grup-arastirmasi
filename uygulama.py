@@ -57,4 +57,8 @@ def aug_normal_incele(kume):
         print("-----------------------------------------------------")
 
 #aug_normal_incele([[1,2,3,4],[1,2,3,5],[1,6,7,4]])
+#aug_normal_incele fonksiyonu parametre almalı.
 aug_normal_incele([])
+#Kümeleri içerisinde tanımlanmış olan fonksiyonun kullanımı.
+homomorfizma_incele()
+
