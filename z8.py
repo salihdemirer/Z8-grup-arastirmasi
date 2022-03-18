@@ -2,7 +2,6 @@
 #ID = {0}
 from matplotlib.pyplot import table
 import pandas
-from IPython.display import display, HTML
 z8 = (0,1,2,3,4,5,6,7)
 liste_ = list()
 satirlar = list()

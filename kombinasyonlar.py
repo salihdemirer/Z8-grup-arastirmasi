@@ -17,6 +17,17 @@ def kombinasyonlar(kume):
                 kombinasyonlar.append(liste_)
                 liste_ = []
     return kombinasyonlar
+#Aldığımız kombinasyonların tam terslerini de alıp kombinasyon listesine eklersek hepsini incelemiş oluruz.
+# def kombinasyon_tersi(kume):
+#     ters_liste = list()
+#     gecici_liste = list()
+#     for eleman in kume:
+#         gecici_liste.append(kume[1])
+#         gecici_liste.append(kume[0])
+#         ters_liste.append(gecici_liste)
+#         gecici_liste = []
+#     return ters_liste        
+
 
 #Bütün kombinasyonları veren fonksiyon
 def tum_kombinasyonlar(kume):
@@ -29,9 +40,3 @@ def tum_kombinasyonlar(kume):
             ters_kombinasyonlar.append(liste_)
             liste_ = []  
     return ters_kombinasyonlar
-kombinasyon = tum_kombinasyonlar([1,2,3,4])
-print("Programın deneyeceği kombinasyonlar:")
-for i in kombinasyon:
-    print(i)
-print("Programın deneyeceği kombinasyon sayısı:")
-print(len(kombinasyon))

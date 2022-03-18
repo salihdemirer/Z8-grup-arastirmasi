@@ -1,5 +1,5 @@
 #Oluşturduğum M kümeleri
-from islemler import islem
+from islemler import islem, ugh_goster
 from normal_alt_ultra import alt_ultra
 #Ultra Grup Homomorfizma incelemesi yapmak için kullanılacak metod.
 def homomorfizma_incele():
@@ -58,7 +58,8 @@ def aug_normal_incele(kume):
 
 #aug_normal_incele([[1,2,3,4],[1,2,3,5],[1,6,7,4]])
 #aug_normal_incele fonksiyonu parametre almalı.
-aug_normal_incele([])
+#aug_normal_incele([])
 #Kümeleri içerisinde tanımlanmış olan fonksiyonun kullanımı.
 homomorfizma_incele()
+ugh_goster()
 

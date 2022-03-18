@@ -1,6 +1,8 @@
 #Hazırlanan uygulama Z8 Grubunun toplama işleminin mod 8 hesabına göre çalışır.
 from copy import copy
 
+from kombinasyonlar import tum_kombinasyonlar
+
 ugh_saglar = list()
 ugh_saglamaz = list()
 
@@ -40,7 +42,8 @@ def islem(kume1,kume2):
     #Önce iki sayının toplama işlemi yapılır ardından mod 8 değeri alınır.    
     #İlk kümeden seçilecek x ve y elemanlarının bir listesi ikili_kombinasyonlar oldu.
     fonksiyon = incele(kume1,kume2)
-    ikili_kombinasyonlar_ = ikili_kombinasyonlar(kume1)
+    ikili_kombinasyonlar_ = ikili_kombinasyonlar(copy(kume1))
+    #ikili_kombinasyonlar_ = tum_kombinasyonlar(copy(kume1))
     for i in ikili_kombinasyonlar_:
         print(i)
     sayac = 0
@@ -74,9 +77,16 @@ def islem(kume1,kume2):
         sayac = 0
     print("--------------------------------------------------------------------------------")
     
-#for saglar in ugh_saglar:
-    #print(saglar)
-#for saglamaz in ugh_saglamaz:
-    #print(saglamaz)
+
+def ugh_goster():
+    print("Ultra Grup Homomorfizması şartını sağlayan küme çiftleri :")
+    for saglar in ugh_saglar:
+        print(saglar)
+    print("--------------------------------------------------------------------------------")
+    print("Ultra Grup Homomorfizması şartını sağlamayan küme çiftleri :")
+    for saglamaz in ugh_saglamaz:
+        print(saglamaz)
+    print("--------------------------------------------------------------------------------")
+    
 #Örnek
 #islem([1,2,5,6],[1,2,3,4])
