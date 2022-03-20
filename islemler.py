@@ -1,6 +1,5 @@
 #Hazırlanan uygulama Z8 Grubunun toplama işleminin mod 8 hesabına göre çalışır.
 from copy import copy
-
 from kombinasyonlar import tum_kombinasyonlar
 
 ugh_saglar = list()

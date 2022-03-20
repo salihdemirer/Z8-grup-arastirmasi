@@ -2,27 +2,32 @@
 #ID = {0}
 from copy import copy
 import re
-from traceback import print_tb
-import pandas
 from prettytable import PrettyTable as pt
 from kombinasyonlar import kombinasyonlar, uclu_kombinasyon
 from alpha import alpha
 
 z8 = (0,1,2,3,4,5,6,7)
-liste_ = list()
-satirlar = list()
+# liste_ = list()
+# satirlar = list()
 aug_olanlar = list()
 aug_olmayanlar = list()
 #İlk satırı yazdıralım
-for eleman in z8:
-    for j in range(0,8):
-        sonuc =(eleman+z8[j])%8
-        liste_.append(sonuc)
-    satirlar.append(liste_)
-    liste_ = []
-#Tabloyu yazdırmak için
-tablo = pandas.DataFrame(satirlar)
-print(tablo)
+def grup_yazdir():
+    satirlar = list()
+    liste_ = list()
+    for eleman in z8:
+        for j in range(0,len(z8)):
+            sonuc =(eleman+z8[j])%8
+            liste_.append(sonuc)
+        satirlar.append(liste_)
+        liste_ = []
+    tb = pt()
+    tb.field_names = z8
+    satirlar.remove(satirlar[0])
+    for i in satirlar:
+        tb.add_row(i)
+    print(tb)
+
 
 M = [[0,1,2,3],[0,1,2,7],[0,1,6,3],[0,1,6,7],[0,5,2,3],[0,5,2,7],[0,5,6,3],[0,5,6,7]]
 H = [0,4]
@@ -131,7 +136,11 @@ def alt_ultra_grup(kume):
     for i in range(0,len(aug_olmayanlar)):
         print(str(i+1)+"-"+str(aug_olmayanlar[i]))
     print("--------------------------------------------")
-alt_ultra_grup([0,1,2,3])
+
+
+
+grup_yazdir()
+#alt_ultra_grup([0,1,6,3])
 #alpha_islemi([0,1])
 #(alpha_islemi([0,1,2,3]))
 #beta_islemi([0,1,2,3])
