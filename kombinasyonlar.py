@@ -1,4 +1,5 @@
 from audioop import reverse
+from copy import copy
 
 #Bu fonksiyon kombinasyonların belirli bir kısmını aldı. Normal Alt Ultra Gruplar için tüm kombinasyonlara bakmamız gerekiyor.
 #Bu fonksiyon aldığı eleman haricinde ilerisinki elemanlardan seçim yapar.
@@ -17,16 +18,7 @@ def kombinasyonlar(kume):
                 kombinasyonlar.append(liste_)
                 liste_ = []
     return kombinasyonlar
-#Aldığımız kombinasyonların tam terslerini de alıp kombinasyon listesine eklersek hepsini incelemiş oluruz.
-# def kombinasyon_tersi(kume):
-#     ters_liste = list()
-#     gecici_liste = list()
-#     for eleman in kume:
-#         gecici_liste.append(kume[1])
-#         gecici_liste.append(kume[0])
-#         ters_liste.append(gecici_liste)
-#         gecici_liste = []
-#     return ters_liste        
+    
 
 
 #Bütün kombinasyonları veren fonksiyon
@@ -40,3 +32,31 @@ def tum_kombinasyonlar(kume):
             ters_kombinasyonlar.append(liste_)
             liste_ = []  
     return ters_kombinasyonlar
+
+#Alt Ultra Grup incelemesinde üç elemanlı kümeleri oluşturmak için.
+def uclu_kombinasyon(kume):
+    kumeler = list()
+    liste_ = list()
+    kume_ = copy(kume)
+    ilk_eleman = kume[0]
+    kume.remove(kume[0])
+    ikinci_eleman = kume[0]
+    for j in kume:
+        liste_.append(ilk_eleman)
+        liste_.append(ikinci_eleman)
+        liste_.append(j)
+        kumeler.append(liste_)
+        liste_ = []
+    ikinci_eleman = kume[1]
+    liste_.append(ilk_eleman)
+    liste_.append(ikinci_eleman)
+    liste_.append(kume[2])
+    kumeler.append(liste_)
+    liste_ = []
+    for k in kume:
+        liste_.append(k)
+    kumeler.append(liste_)
+    liste_ = []
+    kumeler.remove(kumeler[0])
+    return kumeler
+
