@@ -3,17 +3,22 @@
 from copy import copy
 import re
 from prettytable import PrettyTable as pt
-from kombinasyonlar import kombinasyonlar, uclu_kombinasyon
+from kombinasyonlar import kombinasyonlar, uclu_kombinasyon, tum_kombinasyonlar
 from normal_alt_ultra import alt_ultra
 from alpha import alpha
 
 z8 = (0,1,2,3,4,5,6,7)
 # liste_ = list()
 # satirlar = list()
+ug_olanlar = list()
+ug_olmayanlar = list()
 aug_olanlar = list()
 aug_olmayanlar = list()
 #İlk satırı yazdıralım
 def grup_yazdir():
+    print("Z8 = {0,1,2,3,4,5,6,7}")
+    print("Birim eleman = {0} ")
+    print("Tablo:")
     satirlar = list()
     liste_ = list()
     for eleman in z8:
@@ -28,9 +33,11 @@ def grup_yazdir():
     for i in satirlar:
         tb.add_row(i)
     print(tb)
+    print("------------------------------------------------------")
 
 
 M = [[0,1,2,3],[0,1,2,7],[0,1,6,3],[0,1,6,7],[0,5,2,3],[0,5,2,7],[0,5,6,3],[0,5,6,7]]
+M_ = [[0,1,2,3],[0,1,2,7],[0,1,6,3],[0,1,6,7],[0,5,2,3],[0,5,2,7],[0,5,6,3],[0,5,6,7]]
 H = [0,4]
 #Ultra Grup incelemesi
 
@@ -108,8 +115,10 @@ def ultra_grup_kontrol(kume):
     kontrol2 = beta_islemi(kume)
     if(kontrol1 == 1 and kontrol2 == 1):
         print(str(kume)+" bir Ultra Gruptur.")
+        ug_olanlar.append(kume)
     else:
         print(str(kume)+" bir Ultra Grup değildir!")
+        ug_olmayanlar.append(kume)
     print("----------------------------------------------------------\n")
 
 def alt_ultra_grup(kume):
@@ -140,9 +149,80 @@ def alt_ultra_grup(kume):
 
 def normal_alt_ultra_grup():
     for eleman in aug_olanlar:
-        alt_ultra(eleman)
+        print(str(eleman)+" kümesi için inceleme:\n")
+        sonuc = alt_ultra(eleman)
+        if(sonuc == 1):
+            print(str(eleman)+" bir Normal Alt Ultra Gruptur.")
+        else:
+            print(str(eleman)+" bir Normal Alt Ultra Grup değildir.")
+        print("------------------------------------------------------")
+def ultra_grup_homomorfizma(M):
+    #Formül
+    #f([x,y])=[f(x),f(y)]
+    kombinasyonlar_ = list()
+    kombinasyonlar__ = tum_kombinasyonlar(M)
+    #Tüm kombinasyonlar tersten oluşmuştu, tekrar tersine çevirdik.
+    kombinasyonlar_ = list(reversed(kombinasyonlar__))
+    fonksiyonlar = list()
+    for ikili in kombinasyonlar_:
+        fonksiyon = dict()
+        for i in range (0,len(ikili[0])):
+            fonksiyon[ikili[0][i]]=ikili[1][i]
+        #f([x,y]) sol işlemi
+        #Seçilecek x ve y elemanları için kombinasyonlar oluşturduk.
+        komb = list(reversed(tum_kombinasyonlar(ikili[0])))
+        for eleman in komb:
+            mod = (eleman[0] + eleman[1])%8
+            for i in H:
+                mod_ = (i + mod)%8
+                if(mod_ in ikili[0]):
+                    mod__ = mod
+            try:
+                sol_taraf = fonksiyon[mod__]
+                #Sağ taraf işlemleri
+                eleman1 = fonksiyon[eleman[0]]
+                eleman2 = fonksiyon[eleman[1]]
+                imod = (eleman1 + eleman2)%8
+                for j in H:
+                    imod_ = (j + imod)%8
+                    if(imod_ in ikili[1]):
+                        sag_taraf = imod_
+                print("------------------------------------------------")
+                sonuc = "f([{},{}])=[f({}),f({})]"
+                sonuc_ = "{} = {}"
+                print(sonuc.format(eleman[0],eleman[1],eleman[0],eleman[1]))
+                print(sonuc_.format(sol_taraf,sag_taraf))
+                if (sol_taraf == sag_taraf):
+                    print(str(ikili[0])+" --->"+str(ikili[1])+" fonksiyonunda "+ str(eleman) +" için Ultra Grup Homomorfizması vardır.")
+                else:
+                    print(str(ikili[0])+" --->"+str(ikili[1])+" fonksiyonunda "+ str(eleman) +" için Ultra Grup Homomorfizması yoktur.")
+                print("------------------------------------------------")
+            except:
 
-        
+                print(str(ikili[0])+" --->"+str(ikili[1])+" fonksiyonunda "+ str(eleman) +" için Ultra Grup Homomorfizması yoktur.")
+
+def sonuc_yazdir():
+    k = copy(M)           
+    for i in k:
+        ultra_grup_kontrol(i)
+    print("Ultra Grup şartlarını sağlayanlar:")
+    if(len(ug_olanlar)>0):
+        for i in ug_olanlar:
+            print(" -"+str(i))
+    else:
+        print(" -Ultra Grup şartlarını sağlayan eleman yok!")
+    print("Ultra Grup şartlarını sağlamayanlar:")
+    if(len(ug_olmayanlar)>0):
+        for i in ug_olmayanlar:
+            print(" -"+str(i))
+    else:
+        print(" -Ultra Grup şartlarını sağlamayan eleman yok!")
+    print("-------------------------------------------------------\n")
+    for j in M:
+        alt_ultra_grup(j)
+    normal_alt_ultra_grup()
+
+
 #alt_ultra_grup([0,1,2,3])
 #normal_alt_ultra_grup()
 #grup_yazdir()
@@ -151,3 +231,7 @@ def normal_alt_ultra_grup():
 #(alpha_islemi([0,1,2,3]))
 #beta_islemi([0,1,2,3])
 #ultra_grup_kontrol([0,1,2,3])
+sonuc_yazdir()
+for i in M_:
+    ultra_grup_kontrol(i)
+ultra_grup_homomorfizma(M)

@@ -59,4 +59,3 @@ def uclu_kombinasyon(kume):
     liste_ = []
     kumeler.remove(kumeler[0])
     return kumeler
-
