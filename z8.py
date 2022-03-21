@@ -4,6 +4,7 @@ from copy import copy
 import re
 from prettytable import PrettyTable as pt
 from kombinasyonlar import kombinasyonlar, uclu_kombinasyon
+from normal_alt_ultra import alt_ultra
 from alpha import alpha
 
 z8 = (0,1,2,3,4,5,6,7)
@@ -76,7 +77,7 @@ def alpha_islemi(kume):
     tablo_olustur(kume,"",sonuc_listesi,"α")
     kontrol = eleman_kontrol(kume,sonuc_listesi)
     return kontrol
-    #Burada görüntüleme işlemini daha kolay yapabilir miyim?
+    
 def beta_islemi(kume):
     print("Beta işlemi:")
     sonuc_listesi = list()
@@ -137,9 +138,14 @@ def alt_ultra_grup(kume):
         print(str(i+1)+"-"+str(aug_olmayanlar[i]))
     print("--------------------------------------------")
 
+def normal_alt_ultra_grup():
+    for eleman in aug_olanlar:
+        alt_ultra(eleman)
 
-
-grup_yazdir()
+        
+#alt_ultra_grup([0,1,2,3])
+#normal_alt_ultra_grup()
+#grup_yazdir()
 #alt_ultra_grup([0,1,6,3])
 #alpha_islemi([0,1])
 #(alpha_islemi([0,1,2,3]))
