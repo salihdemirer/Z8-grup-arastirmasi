@@ -6,7 +6,6 @@ from prettytable import PrettyTable as pt
 from kombinasyonlar import kombinasyonlar, uclu_kombinasyon, tum_kombinasyonlar
 from normal_alt_ultra import alt_ultra
 from alpha import alpha
-
 z8 = (0,1,2,3,4,5,6,7)
 # liste_ = list()
 # satirlar = list()
@@ -37,7 +36,7 @@ def grup_yazdir():
 
 
 M = [[0,1,2,3],[0,1,2,7],[0,1,6,3],[0,1,6,7],[0,5,2,3],[0,5,2,7],[0,5,6,3],[0,5,6,7]]
-M_ = [[0,1,2,3],[0,1,2,7],[0,1,6,3],[0,1,6,7],[0,5,2,3],[0,5,2,7],[0,5,6,3],[0,5,6,7]]
+K = [[0,1,2,3],[0,1,2,7],[0,1,6,3],[0,1,6,7],[0,5,2,3],[0,5,2,7],[0,5,6,3],[0,5,6,7]]
 H = [0,4]
 #Ultra Grup incelemesi
 
@@ -45,11 +44,11 @@ def tablo_olustur(kume,H,sonuc_listesi,ilk_eleman):
     tb = pt()
     ilk_satir = list()
     satirlar_ = list()
-    if(ilk_eleman == "α"):
+    if(ilk_eleman == "alfa"):
         ilk_satir.append(ilk_eleman)
         for i in kume:
             ilk_satir.append(str(i))
-    if(ilk_eleman == "β"):
+    if(ilk_eleman == "beta"):
         ilk_satir.append(ilk_eleman)
         for i in H:
             ilk_satir.append(str(i))
@@ -81,7 +80,7 @@ def alpha_islemi(kume):
     #Kodlar yazılırken ele alınan kümeler dışında değerler verildiğinde hata döndürüyor.
     print("Alfa işlemi:")
     sonuc_listesi = alpha(kume,H)
-    tablo_olustur(kume,"",sonuc_listesi,"α")
+    tablo_olustur(kume,"",sonuc_listesi,"alfa")
     kontrol = eleman_kontrol(kume,sonuc_listesi)
     return kontrol
     
@@ -102,7 +101,7 @@ def beta_islemi(kume):
                     satir.append(mod_)
     sonuc_listesi.append(satir)
     satir = []
-    tablo_olustur(kume,H,sonuc_listesi,"β")
+    tablo_olustur(kume,H,sonuc_listesi,"beta")
     kontrol = eleman_kontrol(kume,sonuc_listesi)
     return kontrol
 
@@ -221,8 +220,9 @@ def sonuc_yazdir():
     for j in M:
         alt_ultra_grup(j)
     normal_alt_ultra_grup()
+    ultra_grup_homomorfizma(K)
 
-
+#ultra_grup_homomorfizma(M)
 #alt_ultra_grup([0,1,2,3])
 #normal_alt_ultra_grup()
 #grup_yazdir()
@@ -232,6 +232,8 @@ def sonuc_yazdir():
 #beta_islemi([0,1,2,3])
 #ultra_grup_kontrol([0,1,2,3])
 sonuc_yazdir()
-for i in M_:
-    ultra_grup_kontrol(i)
-ultra_grup_homomorfizma(M)
+# for i in M:
+#     ultra_grup_kontrol(i)
+# print(M)
+# print(K)
+# ultra_grup_homomorfizma(K)
